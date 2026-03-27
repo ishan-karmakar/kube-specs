@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kickstart
+  namespace: kickstart
+  annotations:
+    keel.sh/policy: force
+spec:
+  selector:
+    matchLabels:
+      app: kickstart
+  template:
+    metadata:
+      labels:
+        app: kickstart
+    spec:
+      containers:
+      - name: kickstart
+        image: lilshan24/kickstart-website:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kickstart
+  namespace: kickstart
+spec:
+  selector:
+    app: kickstart
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: ClusterIP

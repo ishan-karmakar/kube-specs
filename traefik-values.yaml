@@ -1,0 +1,18 @@
+providers:
+  kubernetesCRD:
+    allowCrossNamespace: true
+ingressRoute:
+  dashboard:
+    enabled: true
+    matchRule: Host(`traefik.everestsummitpm.com`)
+    entryPoints:
+    - websecure
+    middlewares:
+    - name: internal-ips
+      namespace: traefik
+logs:
+  access:
+    enabled: true
+service:
+  spec:
+    externalTrafficPolicy: Local
