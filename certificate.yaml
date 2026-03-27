@@ -6,7 +6,7 @@ metadata:
 spec:
   secretName: traefik-tls
   issuerRef:
-    name: letsencrypt-prod
+    name: letsencrypt
     kind: ClusterIssuer
   commonName: everestsummitpm.com
   dnsNames:
